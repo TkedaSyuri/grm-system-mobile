@@ -1,10 +1,10 @@
-import { StyleSheet, View, Button } from "react-native";
+import { Text,StyleSheet, View, Button } from "react-native";
 import { router } from "expo-router";
 
-export default function HomeScreen() {
+export default function RoomScreen() {
   return (
     <View style={styles.container}>
-      <Button  title="客室状況" onPress={() => router.push({ pathname: "/room" })}/>
+      <Text style={styles.title}>客室画面</Text>
     </View>
   );
 }
