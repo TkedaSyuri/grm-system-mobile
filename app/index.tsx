@@ -21,12 +21,13 @@ return ()=>clearTimeout(timer)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFEFF4',
+    backgroundColor: 'yellowgreen',
     alignItems: 'center',
     justifyContent: 'center'
+
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   }
 });

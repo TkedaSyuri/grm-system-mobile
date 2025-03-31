@@ -1,12 +1,10 @@
-import { Text,StyleSheet, View, Button } from "react-native";
+import { Text,StyleSheet, View,} from "react-native";
 import { router } from "expo-router";
 
 export default function RoomScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>2F</Text>
-      <Text style={styles.title}>3F</Text>
-      <Text style={styles.title}>4F</Text>
+      <Text style={styles.title}>タスク画面</Text>
     </View>
   );
 }
