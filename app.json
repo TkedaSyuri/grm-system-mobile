@@ -27,6 +27,6 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "react-native-memo"
+    "scheme": "rgm-system-mobile"
   }
 }
