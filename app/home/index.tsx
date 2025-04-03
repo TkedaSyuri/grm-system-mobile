@@ -1,33 +1,44 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from "react-native";
 import { router } from "expo-router";
 import { useGetFloor } from "../../src/hooks/useGetFloor";
-import { getData } from "../../api/getRoom";
-
+import Room, { Floors } from "../../src/components/Room";
+import { useAtomValue } from "jotai";
+import { floorsAtom } from "../../src/store";
 
 
 export default function HomeScreen() {
-  const ButtonData = async (Num:string) => {
-    try {
-      const data = await getData(Num);  // 非同期処理を待つ
-      console.log("データ取得後:", data);  // 取得したデータを表示
-    } catch (error) {
-      console.error("エラー:", error);
-    }
-  };
-    
+  const Floors:Floors[] = useAtomValue(floorsAtom)
+  console.log(useAtomValue(floorsAtom))
 
+  const { isLoading, error } = useGetFloor("2");
+
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error) {
+    return <Text>Error: {error.message}</Text>;
+  }
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.roomBox} onPress={()=>ButtonData("2")}>
-        <Text style={styles.buttonText}>{}号室</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.roomBox}>
-        <Text style={styles.buttonText}>202号室</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.roomBox}>
-        <Text style={styles.buttonText}>203号室</Text>
-      </TouchableOpacity>
+      <ScrollView contentContainerStyle={{ paddingVertical: 50 }}>
+        {Floors.map((room) => (
+          <Room
+            key={room.id}
+            id={room.id}
+            roomNumber={room.roomNumber}
+            roomState={room.roomState}
+            isConsecutiveNight={room.isConsecutiveNight}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -35,19 +46,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "yellowgreen",
-    alignItems: "center",
+    backgroundColor: "#111827",
     color: "black",
-  },
-  roomBox: {
-    width: "100%",
-    padding:1
-  },
-  buttonText: {
-    fontWeight: "bold",
-    fontSize: 30,
-    padding: 5,
-    borderWidth: 2,
-    backgroundColor: "white",
   },
 });
