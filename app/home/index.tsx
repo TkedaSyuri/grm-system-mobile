@@ -10,7 +10,6 @@ export default function HomeScreen() {
   const Rooms: Floors[] = useAtomValue(floorsAtom);
   //フロアのページを変えるatom
   const setFloorNumber = useSetAtom(floorNuberAtom);
-  const floorNumber = useAtomValue(floorNuberAtom);
   const isModal = useAtomValue(modalAtom);
 
   useGetFloor();
