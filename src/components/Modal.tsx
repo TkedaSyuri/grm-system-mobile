@@ -6,21 +6,20 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
-import { useAtom, useAtomValue} from "jotai";
-import { modalAtom, selectedRoomNumbersAtom} from "../store";
+import { useAtom, useAtomValue } from "jotai";
+import { modalAtom, selectedRoomNumbersAtom } from "../store";
 import StateBtn from "./StateBtn";
 
 function ChangeStateModal() {
   const [isModal, setIsModal] = useAtom(modalAtom);
-  const selectedRoomNumber = useAtomValue(selectedRoomNumbersAtom)
-
+  const selectedRoomNumber = useAtomValue(selectedRoomNumbersAtom);
 
   return (
     <Modal animationType="slide" transparent={true} visible={isModal}>
       <TouchableWithoutFeedback onPress={() => setIsModal(false)}>
         <View style={styles.overlay}>
           <View style={styles.modalContent}>
-            <Text style={{fontSize:20,fontWeight:"bold"}}>{selectedRoomNumber}号室</Text>
+            <Text style={styles.roomNumberText}>{selectedRoomNumber}号室</Text>
             <StateBtn name="清掃中" state="cleaning" />
             <StateBtn name="清掃完了" state="completed" />
             <StateBtn name="清掃不要" state="unnecessary" />
@@ -64,6 +63,11 @@ const styles = StyleSheet.create({
   closeText: {
     color: "white",
     fontSize: 16,
+  },
+  roomNumberText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    borderBottomWidth:3,
   },
 });
 

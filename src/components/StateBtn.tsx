@@ -26,7 +26,7 @@ const StateBtn:React.FC<StateBtnProps> = (props) => {
   
     return (
        <TouchableOpacity>
-        <Text style={[{backgroundColor:`${color}`,width:120,padding:5,margin:5,fontSize:25,textAlign: "center",borderRadius: 5,fontWeight:"bold"}]}>{name}</Text>
+        <Text style={[{backgroundColor:`${color}`,width:120,padding:5,margin:5,fontSize:25,textAlign: "center",borderWidth:2, borderRadius: 5,fontWeight:"bold"}]}>{name}</Text>
        </TouchableOpacity>
       )
     }

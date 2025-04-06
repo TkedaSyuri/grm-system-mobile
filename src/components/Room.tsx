@@ -52,6 +52,7 @@ const Room: React.FC<RoomsProps> = (props) => {
           width: "100%",
           margin: 5,
           borderWidth: 2,
+          borderRadius:5
         }}
         onLongPress={()=>handleIsModal(roomNumber)}
       >
@@ -71,7 +72,8 @@ const styles = StyleSheet.create({
     padding: 7,
   },
   buttonContainer: {
-  alignItems:"center"
+  alignItems:"center",
+  borderWidth:2,
   },
 });
 
