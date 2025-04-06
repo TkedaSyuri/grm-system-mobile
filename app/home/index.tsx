@@ -1,29 +1,37 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Room from "../../src/components/Room";
 import { useAtomValue, useSetAtom } from "jotai";
-import { floorAtom, floorsAtom, modalAtom } from "../../src/store";
+import { floorNuberAtom, floorsAtom, modalAtom } from "../../src/store";
 import ChangeStateModal from "../../src/components/Modal";
 import { Floors } from "../../src/types";
 import { useGetFloor } from "../../src/hooks/useGetFloor";
 
 export default function HomeScreen() {
-  
   const Rooms: Floors[] = useAtomValue(floorsAtom);
-  const setFloorNumber = useSetAtom(floorAtom);
-  const floorNumber = useAtomValue(floorAtom)
+  //フロアのページを変えるatom
+  const setFloorNumber = useSetAtom(floorNuberAtom);
+  const floorNumber = useAtomValue(floorNuberAtom);
   const isModal = useAtomValue(modalAtom);
 
   useGetFloor();
 
-
-console.log(floorNumber)
-
-const handleRooms =(floorNumber:string)=>{
-  setFloorNumber(floorNumber)
-}
+  const handleFloor = (floorNumber: string) => {
+    setFloorNumber(floorNumber);
+  };
   return (
     <View style={styles.container}>
-      <Text onPress={()=>handleRooms("3")} style={{color:"white",fontSize:30}}>3</Text>
+      <Text
+        onPress={() => handleFloor("2")}
+        style={{ color: "white", fontSize: 30 }}
+      >
+        2
+      </Text>
+      <Text
+        onPress={() => handleFloor("3")}
+        style={{ color: "white", fontSize: 30 }}
+      >
+        3
+      </Text>
       <ScrollView contentContainerStyle={{ paddingVertical: 50 }}>
         {Rooms.map((room) => (
           <Room

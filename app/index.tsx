@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { ActivityIndicator,StyleSheet, Text, View } from "react-native";
 import { useGetFloor } from "../src/hooks/useGetFloor";
 import { useAtomValue } from "jotai";
-import { floorAtom } from "../src/store";
+import { floorNuberAtom } from "../src/store";
 
 export default function InitialScreen() {
   const { isLoading, error } = useGetFloor();

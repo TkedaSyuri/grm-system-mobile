@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { floorAtom, floorsAtom } from "../store";
+import { floorNuberAtom, floorsAtom } from "../store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 
@@ -9,9 +9,9 @@ async function fetcher(key: string) {
 }
 
 export const useGetFloor = () => {
-  const floorNumber = useAtomValue(floorAtom)
-
   const setFloor = useSetAtom(floorsAtom)
+  const floorNumber = useAtomValue(floorNuberAtom)
+
   const { data, error, isLoading } = useSWR(
     `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/get/floor/${floorNumber}`,
     fetcher,
@@ -21,6 +21,8 @@ export const useGetFloor = () => {
   useEffect(() => {
     if (data) {
       setFloor(data);
+      console.log(floorNumber)
+
     }
   }, [data, setFloor]);
   
