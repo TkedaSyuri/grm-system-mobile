@@ -5,10 +5,12 @@ export default function Layout() {
     <Stack
       screenOptions={{
         headerTintColor: "#000000",
-        headerStyle: { backgroundColor: "white" },
+        headerStyle: { backgroundColor: "yellowgreen" },
       }}
     >
-      <Stack.Screen name="home/index" options={{ headerTitle: "ホーム" }} />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+
+      <Stack.Screen name="home/index" options={{ headerTitle: "客室状況" }} />
     </Stack>
   );
 }
