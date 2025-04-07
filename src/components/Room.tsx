@@ -46,7 +46,7 @@ const Room: React.FC<RoomsProps> = (props) => {
           backgroundColor: `${color}`,
           width: "95%",
           margin: 5,
-          borderWidth: 2,
+          borderWidth: 1,
           borderRadius: 5,
         }}
         onLongPress={() => handleIsModal(roomNumber)}
