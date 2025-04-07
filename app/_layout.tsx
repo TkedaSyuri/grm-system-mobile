@@ -8,7 +8,9 @@ export default function Layout() {
         headerStyle: { backgroundColor: "yellowgreen" },
       }}
     >
-      <Stack.Screen name="home/index"  options={{ headerTitle: "客室状況" }} />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+
+      <Stack.Screen name="home/index" options={{ headerTitle: "客室状況" }} />
     </Stack>
   );
 }
