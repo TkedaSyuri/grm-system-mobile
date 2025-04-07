@@ -2,8 +2,6 @@ import { router } from "expo-router";
 import { useEffect } from "react";
 import { ActivityIndicator,StyleSheet, Text, View } from "react-native";
 import { useGetFloor } from "../src/hooks/useGetFloor";
-import { useAtomValue } from "jotai";
-import { floorNuberAtom } from "../src/store";
 
 export default function InitialScreen() {
   const { isLoading, error } = useGetFloor();
