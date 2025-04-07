@@ -1,37 +1,24 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import Room from "../../src/components/Room";
-import { useAtomValue, useSetAtom } from "jotai";
-import { floorNuberAtom, floorsAtom, modalAtom } from "../../src/store";
+import { useAtomValue } from "jotai";
+import { floorsAtom, isFloorModalAtom, modalAtom } from "../../src/store";
 import ChangeStateModal from "../../src/components/Modal";
 import { Floors } from "../../src/types";
 import { useGetFloor } from "../../src/hooks/useGetFloor";
+import MenuBar from "../../src/components/MenuBar";
+import FloorModal from "../../src/components/FloorModal";
 
 export default function HomeScreen() {
   const Rooms: Floors[] = useAtomValue(floorsAtom);
   //フロアのページを変えるatom
-  const setFloorNumber = useSetAtom(floorNuberAtom);
   const isModal = useAtomValue(modalAtom);
+  const isFloorModal = useAtomValue(isFloorModalAtom);
 
   useGetFloor();
 
-  const handleFloor = (floorNumber: string) => {
-    setFloorNumber(floorNumber);
-  };
   return (
     <View style={styles.container}>
-      <Text
-        onPress={() => handleFloor("2")}
-        style={{ color: "white", fontSize: 30 }}
-      >
-        2
-      </Text>
-      <Text
-        onPress={() => handleFloor("3")}
-        style={{ color: "white", fontSize: 30 }}
-      >
-        3
-      </Text>
-      <ScrollView contentContainerStyle={{ paddingVertical: 50 }}>
+      <ScrollView style={styles.scrollArea} contentContainerStyle={{ paddingVertical: 20 }}>
         {Rooms.map((room) => (
           <Room
             key={room.id}
@@ -41,7 +28,11 @@ export default function HomeScreen() {
           />
         ))}
       </ScrollView>
+      <View style={styles.menuBarContainer}>
+      <MenuBar />
+      </View>
       {isModal ? <ChangeStateModal /> : null}
+      {isFloorModal ? <FloorModal /> : null}
     </View>
   );
 }
@@ -49,10 +40,16 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#111827",
-    color: "black",
+    backgroundColor: "white",
+    alignContent:"center"
   },
-  modalStyle: {
+  scrollArea: {
+    flex: 1,
+  },
+  menuBarContainer: {
+    flex:0.1,
+    backgroundColor: "yellowgreen", 
+    justifyContent: "center",
     alignItems: "center",
   },
 });
