@@ -29,8 +29,9 @@ function FloorModal() {
         <View style={styles.overlay}>
           <View style={styles.modalContent}>
             <View style={styles.container}>
-              {RoomNumbers.map((roomNumber) => (
+              {RoomNumbers.map((roomNumber,index) => (
                 <Text
+                key={index}
                   onPress={() => handleFloor(`${roomNumber}`)}
                   style={styles.text}
                 >

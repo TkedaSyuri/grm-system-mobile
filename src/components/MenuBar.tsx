@@ -1,20 +1,18 @@
 import { View, Text} from "react-native";
 import { StyleSheet } from "react-native";
 import React from "react";
-import {  useAtom} from "jotai";
-import { isFloorModalAtom } from "../store";
+import { useRouter } from "expo-router";
+
 
 function MenuBar() {
-  const [showFloorModal,setShowFloorModal] = useAtom(isFloorModalAtom)
-
-  const handleShowFloorModal = ()=>{
-    setShowFloorModal(!showFloorModal)
-  }
-
+const router =useRouter()
+const handleMoniterPress = ()=>{
+  router.push("/home")
+}
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text  style={styles.text} onPress={handleShowFloorModal}>フロア</Text>
+        <Text style={styles.text} onPress={handleMoniterPress} >客室状況</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>タスク</Text>
@@ -29,17 +27,19 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignContent:"center",
-    alignItems:"center"
+    alignItems:"center",
+    paddingBottom:10
   },
   textContainer: {
     padding:15,
     
   },
   text: {
-    fontSize: 25,
+    fontSize: 23,
     color: "black" ,
-    fontWeight: "500",
+    fontWeight: "700",
   },
+
 });
 
 export default MenuBar;
