@@ -29,7 +29,14 @@ export default function HomeScreen() {
         contentContainerStyle={{ paddingVertical: 10 }}
       >
         {Rooms.map((room) => (
-          <Room key={room.id} {...room} />
+          <Room key={room.id}
+          id={room.id}
+            roomNumber={room.roomNumber}
+            roomState={room.roomState}
+            isConsecutiveNight={room.isConsecutiveNight}
+          
+          
+          />
         ))}
       </ScrollView>
 

@@ -7,23 +7,23 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useAtom, useAtomValue } from "jotai";
-import { modalAtom, selectedRoomNumbersAtom } from "../store";
+import { modalAtom, selectedRoomIdAtom, selectedRoomNumbersAtom } from "../store";
 import StateBtn from "./StateBtn";
 
 function ChangeStateModal() {
   const [isModal, setIsModal] = useAtom(modalAtom);
   const selectedRoomNumber = useAtomValue(selectedRoomNumbersAtom);
-
+  const selectedRoomId = useAtomValue(selectedRoomIdAtom);
   return (
     <Modal animationType="slide" transparent={true} visible={isModal}>
       <TouchableWithoutFeedback onPress={() => setIsModal(false)}>
         <View style={styles.overlay}>
           <View style={styles.modalContent}>
             <Text style={styles.roomNumberText}>{selectedRoomNumber}号室</Text>
-            <StateBtn name="清掃中" state="cleaning" />
-            <StateBtn name="清掃完了" state="completed" />
-            <StateBtn name="清掃不要" state="unnecessary" />
-            <StateBtn name="清掃指示" state="required" />
+            <StateBtn stateName="清掃中" state="cleaning" roomId={selectedRoomId} />
+            <StateBtn stateName="清掃完了" state="completed" roomId={selectedRoomId}/>
+            <StateBtn stateName="清掃不要" state="unnecessary" roomId={selectedRoomId}/>
+            <StateBtn stateName="清掃指示" state="required" roomId={selectedRoomId}/>
             <TouchableOpacity
               style={styles.closeButton}
               onPress={() => setIsModal(false)}

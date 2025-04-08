@@ -1,22 +1,25 @@
 import { Text, View, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { useAtom, useSetAtom } from "jotai";
-import { modalAtom, selectedRoomNumbersAtom } from "../store";
+import { modalAtom, selectedRoomIdAtom, selectedRoomNumbersAtom } from "../store";
 import { RoomState } from "../types";
 
 export interface RoomsProps {
+  id:number
   roomNumber: string;
   roomState: RoomState;
   isConsecutiveNight: boolean;
 }
 
 const Room: React.FC<RoomsProps> = (props) => {
-  const { roomNumber, roomState, isConsecutiveNight } = props;
+  const { id,roomNumber, roomState, isConsecutiveNight } = props;
   const [isModal, setIsModal] = useAtom(modalAtom);
   const setSelectedRoomNumber = useSetAtom(selectedRoomNumbersAtom);
+  const setSelectedRoomId = useSetAtom(selectedRoomIdAtom);
 
-  const handleIsModal = (selectedNumber: string) => {
+  const handleIsModal = (selectedNumber: string,id:number) => {
     setSelectedRoomNumber(selectedNumber);
+setSelectedRoomId(id)
     setIsModal(!isModal);
   };
 
@@ -49,7 +52,7 @@ const Room: React.FC<RoomsProps> = (props) => {
           borderWidth: 1,
           borderRadius: 5,
         }}
-        onLongPress={() => handleIsModal(roomNumber)}
+        onLongPress={() => handleIsModal(roomNumber,id)}
       >
         <View style={styles.buttonContainer}>
           <Text style={[styles.text]}>{roomNumber}号室</Text>
