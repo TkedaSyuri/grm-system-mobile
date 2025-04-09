@@ -22,7 +22,7 @@ export default function HomeScreen() {
 
       <ScrollView
         style={styles.scrollArea}
-        contentContainerStyle={{ paddingVertical: 10 }}
+        contentContainerStyle={{ paddingVertical: 50 }}
       >
         {RoomsData.map((room) => (
           <Room
