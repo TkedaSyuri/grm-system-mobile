@@ -14,3 +14,10 @@ export interface Floors {
       isConsecutiveNight: boolean;
     
 }
+
+export interface Tasks {
+    id: number;
+    task: string;
+    isCompleted: boolean
+  }
+  

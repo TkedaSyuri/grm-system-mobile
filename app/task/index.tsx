@@ -1,24 +1,35 @@
-import { Text,StyleSheet, View,} from "react-native";
-import { router } from "expo-router";
+import { StyleSheet, View} from "react-native";
+import MenuBar from "../../src/components/MenuBar";
+import { useGetTask } from "../../src/hooks/useGetTask";
+import CompletedTaskList from "../../src/components/CompletedTaskList";
+import {  useAtomValue } from "jotai";
+import { isTaskModalAtom } from "../../src/store";
+import TaskList from "../../src/components/TaskList";
+import CheckTaskBtn from "../../src/components/CheckTaskBtn";
 
-export default function RoomScreen() {
+export default function TaskScreen() {
+  const isTaskModal = useAtomValue(isTaskModalAtom);
+  useGetTask();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>タスク画面</Text>
+      <CheckTaskBtn/>
+      {isTaskModal ? <CompletedTaskList /> : <TaskList />}
+      <View style={styles.menuBarContainer}>
+        <MenuBar />
+      </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "yellowgreen",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "black"
+    backgroundColor: "white",
+    alignContent: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "black"
+  menuBarContainer: {
+    flex: 0.1,
+    backgroundColor: "yellowgreen",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

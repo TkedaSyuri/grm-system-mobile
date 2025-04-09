@@ -11,6 +11,7 @@ export default function Layout() {
       <Stack.Screen name="index" options={{ headerShown: false }} />
 
       <Stack.Screen name="home/index" options={{ headerTitle: "客室状況" }} />
+      <Stack.Screen name="task/index" options={{ headerTitle: "タスク" }} />
     </Stack>
   );
 }
