@@ -1,21 +1,31 @@
-import { View, Text} from "react-native";
+import { View, Text } from "react-native";
 import { StyleSheet } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 
-
 function MenuBar() {
-const router =useRouter()
-const handleMoniterPress = ()=>{
-  router.push("/home")
-}
+  const router = useRouter();
+  const handleMoniterPress = () => {
+    router.push("/home");
+  };
+  const handleTaskPress = () => {
+    router.push("/task");
+  };
+  const handleChatPress = () => {
+    router.push("/chat");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.text} onPress={handleMoniterPress} >客室状況</Text>
+        <Text style={styles.text} onPress={handleMoniterPress}>
+          客室状況
+        </Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>タスク</Text>
+        <Text style={styles.text} onPress={handleTaskPress}>
+          タスク
+        </Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>チャット</Text>
@@ -26,20 +36,18 @@ const handleMoniterPress = ()=>{
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignContent:"center",
-    alignItems:"center",
-    paddingBottom:10
+    alignContent: "center",
+    alignItems: "center",
+    paddingBottom: 10,
   },
   textContainer: {
-    padding:15,
-    
+    padding: 15,
   },
   text: {
     fontSize: 23,
-    color: "black" ,
+    color: "black",
     fontWeight: "700",
   },
-
 });
 
 export default MenuBar;

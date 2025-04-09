@@ -21,8 +21,6 @@ export const useGetFloor = () => {
   useEffect(() => {
     if (data) {
       setFloor(data);
-      console.log(floorNumber)
-
     }
   }, [data, setFloor]);
   

@@ -1,8 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import Room from "../../src/components/Room";
 import { useAtomValue } from "jotai";
 import { floorsAtom, isFloorModalAtom, modalAtom } from "../../src/store";
@@ -14,7 +10,7 @@ import FloorModal from "../../src/components/FloorModal";
 import ChangFloorBtn from "../../src/components/ChangFloorBtn";
 
 export default function HomeScreen() {
-  const Rooms: Floors[] = useAtomValue(floorsAtom);
+  const RoomsData: Floors[] = useAtomValue(floorsAtom);
   const isModal = useAtomValue(modalAtom);
   const isFloorModal = useAtomValue(isFloorModalAtom);
 
@@ -28,14 +24,13 @@ export default function HomeScreen() {
         style={styles.scrollArea}
         contentContainerStyle={{ paddingVertical: 10 }}
       >
-        {Rooms.map((room) => (
-          <Room key={room.id}
-          id={room.id}
+        {RoomsData.map((room) => (
+          <Room
+            key={room.id}
+            id={room.id}
             roomNumber={room.roomNumber}
             roomState={room.roomState}
             isConsecutiveNight={room.isConsecutiveNight}
-          
-          
           />
         ))}
       </ScrollView>

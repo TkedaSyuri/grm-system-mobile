@@ -1,6 +1,5 @@
 import { useAtom } from "jotai";
-import { Text, View, TouchableOpacity } from "react-native";
-import { StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity ,StyleSheet} from "react-native";
 import { isFloorModalAtom } from "../store";
 
 function ChangFloorBtn() {

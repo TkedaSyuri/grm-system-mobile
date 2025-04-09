@@ -24,7 +24,6 @@ const StateBtn: React.FC<StateBtnProps> = (props) => {
   }
 
   const handleUpdateState = async (state: string, roomId: number) => {
-    console.log(roomId)
     try {
       const response = await fetch(
         `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/edit/room-state/${roomId}`,
