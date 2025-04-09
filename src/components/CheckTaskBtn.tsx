@@ -1,23 +1,17 @@
-
-
-
-import { useAtom } from "jotai";
-import { Text, View, TouchableOpacity ,StyleSheet} from "react-native";
-import { isTaskModalAtom } from "../store";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 
 function CheckTaskBtn() {
-  const [isTaskModal, setIsTaskModal] = useAtom(isTaskModalAtom);
+  const router = useRouter();
 
-  const handleShowFloorModal = () => {
-    console.log(isTaskModal)
-
-    setIsTaskModal(!isTaskModal);
+  const handleCompletedTask = () => {
+    router.push("/task/completed");
   };
 
   return (
     <View style={styles.floorChangeBtnView}>
       <TouchableOpacity style={styles.floorChangeBtn}>
-        <Text style={styles.floorChangeText} onPress={handleShowFloorModal}>
+        <Text style={styles.floorChangeText} onPress={handleCompletedTask}>
           完了したタスク
         </Text>
       </TouchableOpacity>
@@ -45,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckTaskBtn
+export default CheckTaskBtn;
