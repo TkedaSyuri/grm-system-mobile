@@ -1,6 +1,8 @@
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
+import { Text ,StyleSheet} from "react-native";
 
 export default function Layout() {
+  const router = useRouter();
   return (
     <Stack
       screenOptions={{
@@ -17,7 +19,13 @@ export default function Layout() {
       />
       <Stack.Screen
         name="task/index"
-        options={{ headerTitle: "タスク", headerBackVisible: false }}
+        options={{
+          headerTitle: "タスク",
+          headerBackVisible: false,
+          headerRight: () => (
+            <Text style={styles.text} onPress={() => router.push("/task/completed")}>完了したタスク</Text>
+          ),
+        }}
       />
       <Stack.Screen
         name="task/completed"
@@ -26,3 +34,10 @@ export default function Layout() {
     </Stack>
   );
 }
+
+const styles = StyleSheet.create({
+text: {
+  fontSize:15,
+  fontWeight:"500"
+}
+})

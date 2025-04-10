@@ -9,6 +9,5 @@ export const selectedRoomNumbersAtom = atom<string>("");
 export const selectedRoomIdAtom = atom<number>(0)
 export const modalAtom = atom<boolean>(false)
 export const isFloorModalAtom = atom<boolean>(false)
-export const isTaskModalAtom = atom<boolean>(false)
 
 

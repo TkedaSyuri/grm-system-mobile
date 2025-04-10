@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { useAtomValue } from "jotai";
 import { tasksAtom } from "../store";
-import Task from "./Task";
+import Task from "./TaskListItem";
 
 const TaskList = () => {
   const TasksData = useAtomValue(tasksAtom);
