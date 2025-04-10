@@ -3,19 +3,18 @@ import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { useAtomValue } from "jotai";
 import { tasksAtom } from "../store";
-import Task from "./TaskListItem";
+import TaskListItem from "./TaskListItem";
 
 const TaskList = () => {
   const TasksData = useAtomValue(tasksAtom);
 
   return (
-    <>
       <ScrollView
         style={styles.scrollArea}
-        contentContainerStyle={{ paddingVertical: 50 }}
+        contentContainerStyle={{ paddingVertical: 30 }}
       >
         {TasksData.map((task) => (
-          <Task
+          <TaskListItem
             key={task.id}
             id={task.id}
             task={task.task}
@@ -23,7 +22,6 @@ const TaskList = () => {
           />
         ))}
       </ScrollView>
-    </>
   );
 };
 const styles = StyleSheet.create({

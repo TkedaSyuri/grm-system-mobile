@@ -1,14 +1,13 @@
-import { StyleSheet, View} from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import MenuBar from "../../src/components/MenuBar";
 import { useGetTask } from "../../src/hooks/useGetTask";
 import TaskList from "../../src/components/TaskList";
-
 
 export default function TaskScreen() {
   useGetTask();
   return (
     <View style={styles.container}>
-      <TaskList/>
+      <TaskList />
       <View style={styles.menuBarContainer}>
         <MenuBar />
       </View>

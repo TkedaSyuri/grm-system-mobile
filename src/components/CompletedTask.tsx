@@ -17,9 +17,6 @@ const CompletedTask: React.FC<TaskProps> = (props) => {
               <Text style={styles.taskText}>{task}</Text>
             </View>
             <TouchableOpacity>
-              <View style={styles.deleteBtn}>
-                <Text style={styles.deleteBtnText}>削除</Text>
-              </View>
             </TouchableOpacity>
           </View>
         </>
@@ -46,17 +43,6 @@ const styles = StyleSheet.create({
   taskText: {
     fontWeight: "bold",
     fontSize: 20,
-  },
-  deleteBtn: {
-    backgroundColor: "red",
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 5,
-  },
-  deleteBtnText: {
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 14,
   },
 });
 

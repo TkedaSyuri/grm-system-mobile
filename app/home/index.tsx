@@ -7,7 +7,6 @@ import { Floors } from "../../src/types";
 import { useGetFloor } from "../../src/hooks/useGetFloor";
 import MenuBar from "../../src/components/MenuBar";
 import FloorModal from "../../src/components/FloorModal";
-import ChangFloorBtn from "../../src/components/ChangFloorBtn";
 
 export default function HomeScreen() {
   const RoomsData: Floors[] = useAtomValue(floorsAtom);
@@ -18,11 +17,9 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <ChangFloorBtn />
-
       <ScrollView
         style={styles.scrollArea}
-        contentContainerStyle={{ paddingVertical: 50 }}
+        contentContainerStyle={{ paddingVertical: 10 }}
       >
         {RoomsData.map((room) => (
           <Room
