@@ -1,5 +1,5 @@
-import { ListItem } from "@rneui/themed";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { ListItem, Button } from "@rneui/themed";
+import { StyleSheet, View, Text } from "react-native";
 
 interface TaskProps {
   id: number;
@@ -30,23 +30,27 @@ const TaskListItem: React.FC<TaskProps> = (props) => {
     <View>
       {isCompleted === false ? (
         <ListItem.Swipeable
-          rightContent={(reset) => (
-            <View style={{margin:"auto"}}>
-
-            <TouchableOpacity
-              onPress={() => {
-                if (handleCompletePress) {
-                  console.log("dd");
-                  handleCompletePress(id, isCompleted);
-                }
-                reset();
-              }}
-              style={styles.completedBtn}
-            >
-              <Text style={styles.completedBtnText}>完了</Text>
-            </TouchableOpacity>
+          leftContent={(reset) => (
+            <View style={{ margin: "auto"}}>
+              <Button
+                onPress={() => {
+                  if (handleCompletePress) {
+                    handleCompletePress(id, isCompleted);
+                  }
+                  reset();
+                }}
+                buttonStyle={{
+                  backgroundColor: "#00CC00",
+                  paddingVertical: 10,
+                  paddingLeft: 1,
+                  marginTop: 2,
+                  borderRadius: 8,
+                }}
+                icon={{ name: "check" }}
+              >
+                <Text style={styles.completedBtnText}>完了</Text>
+              </Button>
             </View>
-
           )}
         >
           <ListItem.Content style={styles.taskBox}>
@@ -60,23 +64,20 @@ const TaskListItem: React.FC<TaskProps> = (props) => {
 
 const styles = StyleSheet.create({
   completedBtn: {
-    padding:20,
-    backgroundColor: "#00CC00", 
+    padding: 20,
+    backgroundColor: "#00CC00",
     paddingVertical: 10,
     borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 10, 
   },
   completedBtnText: {
     color: "#fff",
     fontWeight: "600",
-    fontSize: 16,
+    fontSize: 20,
   },
   taskBox: {
     backgroundColor: "#EEEEEE",
-    padding: 10,
-    marginTop:5,
+    padding: 15,
+    marginTop: 5,
     borderRadius: 12,
     borderColor: "#e0e0e0",
     borderWidth: 1,
