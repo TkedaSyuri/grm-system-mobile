@@ -31,10 +31,11 @@ export default function HomeScreen() {
           />
         ))}
       </ScrollView>
-
-      <View style={styles.menuBarContainer}>
+            <View style={styles.menuBarContainer}>
         <MenuBar />
-      </View>
+
+            </View>
+      
       {isModal && <ChangeStateModal />}
       {isFloorModal && <FloorModal />}
     </View>
@@ -47,13 +48,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignContent: "center",
   },
-  scrollArea: {
-    flex: 1,
-  },
   menuBarContainer: {
     flex: 0.1,
     backgroundColor: "yellowgreen",
     justifyContent: "center",
     alignItems: "center",
+  },
+  scrollArea: {
+    flex: 1,
   },
 });

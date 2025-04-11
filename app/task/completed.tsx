@@ -3,7 +3,7 @@ import { useAtomValue } from "jotai";
 import { tasksAtom } from "../../src/store";
 import CompletedTask from "../../src/components/CompletedTask";
 
-const CompletedTaskList = () => {
+const CompletedTaskScreen = () => {
   const TasksData = useAtomValue(tasksAtom);
 
   return (
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CompletedTaskList;
+export default CompletedTaskScreen;

@@ -28,7 +28,7 @@ function MenuBar() {
         </Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>チャット</Text>
+        <Text style={styles.text} onPress={handleChatPress}>チャット</Text>
       </View>
     </View>
   );
@@ -36,12 +36,13 @@ function MenuBar() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignContent: "center",
-    alignItems: "center",
     paddingBottom: 10,
+    backgroundColor: "yellowgreen",
+    alignContent:"center",
+    alignItems:"center"
   },
   textContainer: {
-    padding: 15,
+    margin: 15,
   },
   text: {
     fontSize: 23,

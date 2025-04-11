@@ -11,7 +11,6 @@ export default function Layout() {
     setShowFloorModal(!showFloorModal);
   };
 
-
   return (
     <Stack
       screenOptions={{
@@ -44,6 +43,12 @@ export default function Layout() {
       <Stack.Screen
         name="task/completed"
         options={{ headerTitle: "完了したタスク", animation: "default" }}
+      />
+      <Stack.Screen
+        name="chat/index"
+        options={{ headerTitle: "チャット",          
+           headerBackVisible: false,
+        }}
       />
     </Stack>
   );

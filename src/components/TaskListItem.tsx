@@ -1,11 +1,6 @@
 import { ListItem, Button } from "@rneui/themed";
 import { StyleSheet, View, Text } from "react-native";
-
-interface TaskProps {
-  id: number;
-  task: string;
-  isCompleted: boolean;
-}
+import { TaskProps } from "../types";
 
 const TaskListItem: React.FC<TaskProps> = (props) => {
   const { id, task, isCompleted } = props;

@@ -1,10 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { TaskProps } from "../types";
 
-interface TaskProps {
-  id: number;
-  task: string;
-  isCompleted: boolean;
-}
 
 const CompletedTask: React.FC<TaskProps> = (props) => {
   const { id, task, isCompleted } = props;
