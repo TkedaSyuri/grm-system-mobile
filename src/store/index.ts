@@ -1,6 +1,6 @@
 
 import { atom} from "jotai";
-import { Chats, Floors, Tasks } from "../types";
+import type { Chats, Floors, Tasks } from "../types";
 
 export const floorsAtom = atom<Floors[]>([])
 export const tasksAtom = atom<Tasks[]>([])
