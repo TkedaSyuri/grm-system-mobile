@@ -1,19 +1,20 @@
 import { ScrollView, StyleSheet } from "react-native";
-
-import React from "react";
 import { useAtomValue } from "jotai";
-import { tasksAtom } from "../store";
+import { tasksAtom } from "../../store";
 import TaskListItem from "./TaskListItem";
 
-const TaskList = () => {
+
+
+const TaskList:React.FC<{filterCompleted:boolean}> = ({filterCompleted}) => {
   const TasksData = useAtomValue(tasksAtom);
+  const filteredTasks = TasksData.filter(task => task.isCompleted === filterCompleted);
 
   return (
       <ScrollView
         style={styles.scrollArea}
-        contentContainerStyle={{ paddingVertical: 30 }}
+        contentContainerStyle={{ paddingVertical: 20 }}
       >
-        {TasksData.map((task) => (
+        {filteredTasks.map((task) => (
           <TaskListItem
             key={task.id}
             id={task.id}

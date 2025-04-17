@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet, Text } from "react-native";
 import ChatListItem from "./ChatListItem";
 import { useAtomValue } from "jotai";
-import { chatsAtom } from "../store";
-import { useGetChat } from "../hooks/useGetChat";
+import { chatsAtom } from "../../store";
+import { useGetChat } from "../../hooks/useGetChat";
 
 const ChatList = () => {
   const ChatData = useAtomValue(chatsAtom);

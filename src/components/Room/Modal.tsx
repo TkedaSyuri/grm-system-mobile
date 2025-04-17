@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useAtom, useAtomValue } from "jotai";
-import { modalAtom, selectedRoomIdAtom, selectedRoomNumbersAtom } from "../store";
+import { modalAtom, selectedRoomIdAtom, selectedRoomNumbersAtom } from "../../store";
 import StateBtn from "./StateBtn";
 
 function ChangeStateModal() {

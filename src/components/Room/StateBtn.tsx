@@ -1,4 +1,5 @@
 import { Text, TouchableOpacity } from "react-native";
+
 interface StateBtnProps {
   stateName: string;
   state: string;

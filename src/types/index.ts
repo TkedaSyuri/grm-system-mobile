@@ -18,11 +18,6 @@ export interface Tasks {
   isCompleted: boolean;
 }
 
-export interface TaskProps {
-  id: number;
-  task: string;
-  isCompleted: boolean;
-}
 export interface Chats {
   id: number;
   message: string;

@@ -1,6 +1,5 @@
 import { View, Text } from "react-native";
 import { StyleSheet } from "react-native";
-import { Chats } from "../types";
 
 interface ChatProps {
   id: number;

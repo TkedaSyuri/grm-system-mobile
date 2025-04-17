@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import ChatList from "../../src/components/ChatList";
+import ChatList from "../../src/components/Chat/ChatList";
 import MenuBar from "../../src/components/MenuBar";
 
 const ChatScreen = () => {
