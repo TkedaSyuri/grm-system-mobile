@@ -11,7 +11,7 @@ export const useGetChat = () => {
   const setChat = useSetAtom(chatsAtom);
 
   const { data, error, isLoading } = useSWR(
-    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/chats/chats`,
+    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/chat`,
     fetcher,
     { refreshInterval: 3000 }
   );
