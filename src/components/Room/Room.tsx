@@ -59,9 +59,14 @@ const Room: React.FC<RoomsProps> = (props) => {
         }}
         onLongPress={() => handleIsModal(roomNumber, id)}
       >
-        <View style={styles.buttonContainer}>
-          <Text style={[styles.text]}>{roomNumber}号室</Text>
-          <Text style={styles.stateText}>{state}</Text>
+        <View style={styles.roomContainer}>
+          <Text style={styles.text}>{roomNumber}号室</Text>
+          <View style={styles.stateContainer}>
+            <Text style={styles.stateText}>{state}</Text>
+            {isConsecutiveNight ? (
+              <Text style={styles.consecutiveNight}>連泊</Text>
+            ) : null}
+          </View>
         </View>
       </TouchableOpacity>
     </View>
@@ -72,9 +77,14 @@ const styles = StyleSheet.create({
   container: {
     marginStart: 5,
   },
-  buttonContainer: {
+  roomContainer: {
     alignItems: "center",
     borderWidth: 2,
+  },
+  stateContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
   text: {
     fontWeight: "bold",
@@ -85,6 +95,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 25,
     padding: 2,
+  },
+  consecutiveNight: {
+    fontSize: 20,
+    borderWidth: 1,
+    backgroundColor: "yellow",
+    margin: 6,
+    padding: 4,
   },
 });
 

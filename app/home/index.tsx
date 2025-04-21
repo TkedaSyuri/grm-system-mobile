@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
     backgroundColor: "yellowgreen",
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: '#000',
+    shadowOpacity: 0.3,                     
+    shadowRadius: 4,         
   },
   scrollArea: {
     flex: 1,
