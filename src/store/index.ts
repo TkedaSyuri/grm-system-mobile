@@ -8,7 +8,7 @@ export const chatsAtom = atom<Chats[]>([])
 export const floorNuberAtom = atom("2")
 export const selectedRoomNumbersAtom = atom<string>("");
 export const selectedRoomIdAtom = atom<number>(0)
-export const modalAtom = atom<boolean>(false)
+export const isModalAtom = atom<boolean>(false)
 export const isFloorModalAtom = atom<boolean>(false)
 
 

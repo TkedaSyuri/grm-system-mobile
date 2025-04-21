@@ -2,7 +2,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { useAtom, useSetAtom } from "jotai";
 import {
-  modalAtom,
+  isModalAtom,
   selectedRoomIdAtom,
   selectedRoomNumbersAtom,
 } from "../../store";
@@ -17,7 +17,7 @@ export interface RoomsProps {
 
 const Room: React.FC<RoomsProps> = (props) => {
   const { id, roomNumber, roomState, isConsecutiveNight } = props;
-  const [isModal, setIsModal] = useAtom(modalAtom);
+  const [isModal, setIsModal] = useAtom(isModalAtom);
   const setSelectedRoomNumber = useSetAtom(selectedRoomNumbersAtom);
   const setSelectedRoomId = useSetAtom(selectedRoomIdAtom);
 

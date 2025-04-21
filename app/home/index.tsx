@@ -1,7 +1,7 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 import Room from "../../src/components/Room/Room";
 import { useAtomValue } from "jotai";
-import { floorsAtom, isFloorModalAtom, modalAtom } from "../../src/store";
+import { floorsAtom, isFloorModalAtom, isModalAtom } from "../../src/store";
 import ChangeStateModal from "../../src/components/Room/Modal";
 import type { Floors } from "../../src/types";
 import { useGetFloor } from "../../src/hooks/useGetFloor";
@@ -10,7 +10,7 @@ import FloorModal from "../../src/components/Room/FloorModal";
 
 export default function HomeScreen() {
   const RoomsData: Floors[] = useAtomValue(floorsAtom);
-  const isModal = useAtomValue(modalAtom);
+  const isModal = useAtomValue(isModalAtom);
   const isFloorModal = useAtomValue(isFloorModalAtom);
 
   useGetFloor();
@@ -31,11 +31,10 @@ export default function HomeScreen() {
           />
         ))}
       </ScrollView>
-            <View style={styles.menuBarContainer}>
+      <View style={styles.menuBarContainer}>
         <MenuBar />
+      </View>
 
-            </View>
-      
       {isModal && <ChangeStateModal />}
       {isFloorModal && <FloorModal />}
     </View>
