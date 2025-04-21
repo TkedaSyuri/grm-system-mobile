@@ -13,7 +13,7 @@ export const useGetFloor = () => {
   const floorNumber = useAtomValue(floorNuberAtom)
 
   const { data, error, isLoading } = useSWR(
-    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/get/floor/${floorNumber}`,
+    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/${floorNumber}`,
     fetcher,
     { refreshInterval: 3000 }
   );

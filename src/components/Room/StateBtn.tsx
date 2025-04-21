@@ -1,15 +1,16 @@
+import { useSetAtom } from "jotai";
 import { Text, TouchableOpacity } from "react-native";
+import { isModalAtom } from "../../store";
 
 interface StateBtnProps {
   stateName: string;
   state: string;
   roomId: number;
 }
-
-import React from "react";
-
+//部屋の状態を変更するボタンコンポーネント
 const StateBtn: React.FC<StateBtnProps> = (props) => {
-  const { stateName, state ,roomId} = props;
+  const { stateName, state, roomId } = props;
+  const isSetModal = useSetAtom(isModalAtom);
 
   let color = "";
   if (state === "vacant") {
@@ -23,11 +24,11 @@ const StateBtn: React.FC<StateBtnProps> = (props) => {
   } else if (state === "unnecessary") {
     color = "#B0B0B0";
   }
-
+//部屋の状態を変更する処理
   const handleUpdateState = async (state: string, roomId: number) => {
     try {
       const response = await fetch(
-        `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/edit/room-state/${roomId}`,
+        `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/room-state/${roomId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -37,6 +38,8 @@ const StateBtn: React.FC<StateBtnProps> = (props) => {
       if (!response.ok) {
         return console.error(`お部屋のステータス変更に失敗 ${response.status}`);
       }
+      isSetModal(false);
+
       return response.json();
     } catch (error) {
       console.log(error);
@@ -44,7 +47,7 @@ const StateBtn: React.FC<StateBtnProps> = (props) => {
   };
 
   return (
-    <TouchableOpacity onPress={()=>handleUpdateState(state,roomId)} >
+    <TouchableOpacity onPress={() => handleUpdateState(state, roomId)}>
       <Text
         style={[
           {
