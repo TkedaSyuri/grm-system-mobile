@@ -10,14 +10,14 @@ async function fetcher(key: string) {
 
 export const useGetTask = () => {
   const setTask = useSetAtom(tasksAtom)
-
   const { data, error, isLoading } = useSWR(
-    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/tasks/all-tasks`,
+    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/task`,
     fetcher,
     { refreshInterval: 3000 }
   );
 
   useEffect(() => {
+
     if (data) {
       setTask(data);
 

@@ -14,7 +14,7 @@ const InCompletedTask:React.FC<InCompletedTaskProps> = (props) => {
     const handleCompletePress = async (id: number, isCompleted: boolean) => {
       try {
         const response = await fetch(
-          `${process.env.EXPO_PUBLIC_APP_VERSION}/api/tasks/edit-completed-task/${id}`,
+          `${process.env.EXPO_PUBLIC_APP_VERSION}/api/task/complete-task/${id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
