@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     shadowColor: '#000',
-    shadowOpacity: 0.3,                     
+    shadowOpacity: 0.2,                     
     shadowRadius: 4,         
   },
   scrollArea: {

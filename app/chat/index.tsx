@@ -1,15 +1,26 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import ChatList from "../../src/components/Chat/ChatList";
 import MenuBar from "../../src/components/MenuBar";
+import ChatBar from "../../src/components/Chat/ChatBar";
 
 const ChatScreen = () => {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={60}
+    >
+      {/* メッセージリスト コンポーネント*/}
       <ChatList />
+
+      {/* メッセージ入力バー コンポーネント*/}
+      <ChatBar />
+
+      {/* メニューバー コンポーネント*/}
       <View style={styles.menuBarContainer}>
         <MenuBar />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -24,6 +35,30 @@ const styles = StyleSheet.create({
     backgroundColor: "yellowgreen",
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: '#000',
+    shadowOpacity: 0.2,                     
+    shadowRadius: 4,         
+
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderTopWidth: 1,
+    borderTopColor: "#ccc",
+    backgroundColor: "#fff",
+  },
+
+  textInput: {
+    flex: 1,
+    height: 40,
+    paddingHorizontal: 10,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    borderRadius: 20,
+    backgroundColor: "#f5f5f5",
+    marginRight: 10,
   },
 });
 

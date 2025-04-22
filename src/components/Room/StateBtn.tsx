@@ -24,7 +24,7 @@ const StateBtn: React.FC<StateBtnProps> = (props) => {
   } else if (state === "unnecessary") {
     color = "#B0B0B0";
   }
-//部屋の状態を変更する処理
+//部屋の状態を変更する関数
   const handleUpdateState = async (state: string, roomId: number) => {
     try {
       const response = await fetch(

@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     alignContent:"center",
     alignItems:"center",
+    
   },
   textContainer: {
     margin: 15,

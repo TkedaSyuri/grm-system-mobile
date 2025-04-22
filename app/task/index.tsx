@@ -25,5 +25,9 @@ const styles = StyleSheet.create({
     backgroundColor: "yellowgreen",
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: '#000',
+    shadowOpacity: 0.2,                     
+    shadowRadius: 4,         
+
   },
 });

@@ -19,7 +19,7 @@ const TaskListItem: React.FC<TaskListItemProps> = (props) => {
       {isCompleted === false ? (
         <InCompletedTask id={id} task={task} isCompleted={isCompleted} />
       ) : (
-        <CompletedTask   task={task} />
+        <CompletedTask id={id} task={task}isCompleted={isCompleted} />
       )}
     </View>
   );

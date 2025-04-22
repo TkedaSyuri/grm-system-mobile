@@ -11,14 +11,14 @@ interface InCompletedTaskProps {
 
 const InCompletedTask:React.FC<InCompletedTaskProps> = (props) => {
     const {id,task,isCompleted} = props
-    const handleCompletePress = async (id: number, isCompleted: boolean) => {
+    const handleIsCompletePress = async (id: number, isCompleted: boolean) => {
       try {
         const response = await fetch(
           `${process.env.EXPO_PUBLIC_APP_VERSION}/api/task/complete-task/${id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ isCompleted: !isCompleted }),
+            body: JSON.stringify({ isCompleted: isCompleted }),
           }
         );
         return response.json();
@@ -28,27 +28,26 @@ const InCompletedTask:React.FC<InCompletedTaskProps> = (props) => {
     };    
   return (
         <ListItem.Swipeable
-          leftWidth={90}
           rightContent={(reset) => (
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
               <Button
                 onPress={() => {
-                  handleCompletePress?.(id, isCompleted);
+                  handleIsCompletePress?.(id, isCompleted);
                   reset();
                 }}
                 buttonStyle={{
                   backgroundColor: "#00CC00",
-                  paddingVertical: 10,
+                  paddingVertical: 13,
                   paddingHorizontal: 10,
                   borderRadius: 8,
                 }}
-                icon={{ name: "check", color: "white", size: 15 }}
+                icon={{ name: "check", color: "white", size: 17}}
                 title="完了"
                 titleStyle={{
                   color: "white",
                   fontWeight: "bold",
-                  fontSize: 14,
-                  marginLeft: 5,
+                  fontSize: 15,
+                  marginLeft: 3,
                 }}
               />
             </View>
