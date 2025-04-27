@@ -3,6 +3,7 @@ import { useAtomValue } from "jotai";
 import { tasksAtom } from "../../store";
 import InCompletedTaskItem from "./InCompletedTaskItem";
 import CompletedTaskItem from "./CompletedTaskItem";
+import { useState } from "react";
 
 const TaskList: React.FC<{ filterCompleted: boolean }> = ({
   filterCompleted,
@@ -11,11 +12,13 @@ const TaskList: React.FC<{ filterCompleted: boolean }> = ({
   const filteredTasks = TasksData.filter(
     (task) => task.isCompleted === filterCompleted
   );
+  const [scrollEnabled, setScrollEnabled] = useState(true);
 
   return (
     <ScrollView
       style={styles.scrollArea}
       contentContainerStyle={{ paddingVertical: 20 }}
+      scrollEnabled={scrollEnabled}
     >
       {filteredTasks.map((task) => (
         <View key={task.id} >
@@ -24,12 +27,14 @@ const TaskList: React.FC<{ filterCompleted: boolean }> = ({
               id={task.id}
               task={task.task}
               isCompleted={task.isCompleted}
+              setScrollEnabled={setScrollEnabled} 
             />
           ) : (
             <CompletedTaskItem
               id={task.id}
               task={task.task}
               isCompleted={task.isCompleted}
+              setScrollEnabled={setScrollEnabled} 
             />
           )}
         </View>

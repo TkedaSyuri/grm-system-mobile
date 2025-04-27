@@ -6,11 +6,10 @@ interface InCompletedTaskItemProps {
   id: number;
   task: string;
   isCompleted: boolean;
-}
+  setScrollEnabled: (enabled: boolean) => void;}
 
 const InCompletedTaskItem: React.FC<InCompletedTaskItemProps> = (props) => {
-  const { id, task, isCompleted } = props;
-  const [scrollEnabled, setScrollEnabled] = useState(true);
+  const { id, task, isCompleted ,setScrollEnabled} = props;
   const handleIsCompletePress = async (id: number, isCompleted: boolean) => {
     try {
       const response = await fetch(
@@ -28,7 +27,6 @@ const InCompletedTaskItem: React.FC<InCompletedTaskItemProps> = (props) => {
   };
   return (
     <ListItem.Swipeable
-    // scrollEnabled={scrollEnabled}
       onSwipeBegin={() => setScrollEnabled(false)}
       onSwipeEnd={() => setScrollEnabled(true)}
       rightContent={(reset) => (
