@@ -8,19 +8,6 @@ const CompletedTaskScreen = () => {
   const TasksData = useAtomValue(tasksAtom);
 
   return (
-      // <ScrollView
-      //   style={styles.scrollArea}
-      //   contentContainerStyle={{ paddingVertical: 20 }}
-      // >
-      //   {TasksData.map((task) => (
-      //     <CompletedTask
-      //       key={task.id}
-      //       id={task.id}
-      //       task={task.task}
-      //       isCompleted={task.isCompleted}
-      //     />
-      //   ))}
-      // </ScrollView>
       <View style={styles.container}>
       <TaskList  filterCompleted={true} />
       <View style={styles.menuBarContainer}>
