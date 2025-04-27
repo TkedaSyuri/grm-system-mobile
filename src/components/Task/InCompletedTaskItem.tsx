@@ -41,7 +41,7 @@ const InCompletedTaskItem: React.FC<InCompletedTaskItemProps> = (props) => {
             buttonStyle={{
               backgroundColor: "#00CC00",
               paddingVertical: 13,
-              paddingHorizontal: 10,
+              paddingHorizontal: 15,
               borderRadius: 8,
             }}
             icon={{ name: "check", color: "white", size: 17 }}
@@ -63,17 +63,6 @@ const InCompletedTaskItem: React.FC<InCompletedTaskItemProps> = (props) => {
   );
 };
 const styles = StyleSheet.create({
-  completedBtn: {
-    padding: 20,
-    backgroundColor: "#00CC00",
-    paddingVertical: 10,
-    borderRadius: 8,
-  },
-  completedBtnText: {
-    color: "#fff",
-    fontWeight: "600",
-    fontSize: 20,
-  },
   taskBox: {
     padding: 15,
     marginTop: 5,
