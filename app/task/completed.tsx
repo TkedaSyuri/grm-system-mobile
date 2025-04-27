@@ -1,17 +1,12 @@
-import { StyleSheet,View,Text} from "react-native";
-import { useAtomValue } from "jotai";
-import { tasksAtom } from "../../src/store";
-import CompletedTask from "../../src/components/Task/CompletedTaskItem";
+import { StyleSheet, View, Text } from "react-native";
 import TaskList from "../../src/components/Task/TaskList";
 
 const CompletedTaskScreen = () => {
-  const TasksData = useAtomValue(tasksAtom);
 
   return (
-      <View style={styles.container}>
-      <TaskList  filterCompleted={true} />
-      <View style={styles.menuBarContainer}>
-      </View>
+    <View style={styles.container}>
+      <TaskList filterCompleted={true} />
+      <View style={styles.menuBarContainer}></View>
     </View>
   );
 };
@@ -21,7 +16,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignContent: "center",
-
   },
   scrollArea: {
     flex: 1,

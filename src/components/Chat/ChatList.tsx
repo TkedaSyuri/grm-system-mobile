@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import ChatListItem from "./ChatListItem";
 import { useAtomValue } from "jotai";
 import { chatsAtom } from "../../store";
