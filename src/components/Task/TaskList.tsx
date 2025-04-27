@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useAtomValue } from "jotai";
 import { tasksAtom } from "../../store";
-import InCompletedTask from "./InCompletedTask";
-import CompletedTask from "./CompletedTask";
+import InCompletedTaskItem from "./InCompletedTaskItem";
+import CompletedTaskItem from "./CompletedTaskItem";
 
 const TaskList: React.FC<{ filterCompleted: boolean }> = ({
   filterCompleted,
@@ -20,13 +20,13 @@ const TaskList: React.FC<{ filterCompleted: boolean }> = ({
       {filteredTasks.map((task) => (
         <View key={task.id} >
           {task.isCompleted === false ? (
-            <InCompletedTask
+            <InCompletedTaskItem
               id={task.id}
               task={task.task}
               isCompleted={task.isCompleted}
             />
           ) : (
-            <CompletedTask
+            <CompletedTaskItem
               id={task.id}
               task={task.task}
               isCompleted={task.isCompleted}

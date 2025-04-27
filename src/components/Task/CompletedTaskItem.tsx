@@ -2,13 +2,13 @@ import { Button, ListItem } from "@rneui/base";
 import { View,StyleSheet } from "react-native";
 
 
-interface CompletedTaskProps {
+interface CompletedTaskItemProps {
   id:number;
   task: string;
   isCompleted:boolean
 }
 
-const CompletedTask: React.FC<CompletedTaskProps> = (props) => {
+const CompletedTaskItem: React.FC<CompletedTaskItemProps> = (props) => {
   const { id,task,isCompleted} = props;
   const handleIsCompletePress = async (id: number, isCompleted: boolean) => {
     try {
@@ -88,4 +88,4 @@ color: "#333",
 });
 
 
-export default CompletedTask;
+export default CompletedTaskItem;

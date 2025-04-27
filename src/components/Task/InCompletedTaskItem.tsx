@@ -2,13 +2,13 @@ import { ListItem, Button } from "@rneui/themed";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
-interface InCompletedTaskProps {
+interface InCompletedTaskItemProps {
   id: number;
   task: string;
   isCompleted: boolean;
 }
 
-const InCompletedTask: React.FC<InCompletedTaskProps> = (props) => {
+const InCompletedTaskItem: React.FC<InCompletedTaskItemProps> = (props) => {
   const { id, task, isCompleted } = props;
   const [scrollEnabled, setScrollEnabled] = useState(true);
   const handleIsCompletePress = async (id: number, isCompleted: boolean) => {
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InCompletedTask;
+export default InCompletedTaskItem;

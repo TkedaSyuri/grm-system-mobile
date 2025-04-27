@@ -1,7 +1,7 @@
 import { StyleSheet,View,Text} from "react-native";
 import { useAtomValue } from "jotai";
 import { tasksAtom } from "../../src/store";
-import CompletedTask from "../../src/components/Task/CompletedTask";
+import CompletedTask from "../../src/components/Task/CompletedTaskItem";
 import TaskList from "../../src/components/Task/TaskList";
 
 const CompletedTaskScreen = () => {
