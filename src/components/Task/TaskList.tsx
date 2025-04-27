@@ -1,28 +1,40 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useAtomValue } from "jotai";
 import { tasksAtom } from "../../store";
-import TaskListItem from "./TaskListItem";
+import InCompletedTask from "./InCompletedTask";
+import CompletedTask from "./CompletedTask";
 
-
-
-const TaskList:React.FC<{filterCompleted:boolean}> = ({filterCompleted}) => {
+const TaskList: React.FC<{ filterCompleted: boolean }> = ({
+  filterCompleted,
+}) => {
   const TasksData = useAtomValue(tasksAtom);
-  const filteredTasks = TasksData.filter(task => task.isCompleted === filterCompleted);
+  const filteredTasks = TasksData.filter(
+    (task) => task.isCompleted === filterCompleted
+  );
 
   return (
-      <ScrollView
-        style={styles.scrollArea}
-        contentContainerStyle={{ paddingVertical: 20 }}
-      >
-        {filteredTasks.map((task) => (
-          <TaskListItem
-            key={task.id}
-            id={task.id}
-            task={task.task}
-            isCompleted={task.isCompleted}
-          />
-        ))}
-      </ScrollView>
+    <ScrollView
+      style={styles.scrollArea}
+      contentContainerStyle={{ paddingVertical: 20 }}
+    >
+      {filteredTasks.map((task) => (
+        <View key={task.id} >
+          {task.isCompleted === false ? (
+            <InCompletedTask
+              id={task.id}
+              task={task.task}
+              isCompleted={task.isCompleted}
+            />
+          ) : (
+            <CompletedTask
+              id={task.id}
+              task={task.task}
+              isCompleted={task.isCompleted}
+            />
+          )}
+        </View>
+      ))}
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
