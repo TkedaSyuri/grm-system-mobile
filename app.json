@@ -27,6 +27,15 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "rgm-system-mobile"
+    "scheme": "rgm-system-mobile",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "08fc4b7e-ad95-421f-87fa-4dd0826e75b3"
+      }
+    },
+    "owner": "syuri2000"
   }
 }
