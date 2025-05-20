@@ -17,9 +17,6 @@ const ChatScreen = () => {
       <ChatBar />
 
       {/* メニューバー コンポーネント*/}
-      <View style={styles.menuBarContainer}>
-        <MenuBar />
-      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -30,16 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignContent: "center",
   },
-  menuBarContainer: {
-    flex: 0.1,
-    backgroundColor: "yellowgreen",
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: '#000',
-    shadowOpacity: 0.2,                     
-    shadowRadius: 4,         
 
-  },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
