@@ -1,11 +1,11 @@
 import { Stack, useRouter } from "expo-router";
 import { useAtom } from "jotai";
-import { Text ,StyleSheet} from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { isFloorModalAtom } from "../src/store";
 
 export default function Layout() {
-    const [showFloorModal, setShowFloorModal] = useAtom(isFloorModalAtom);
-  
+  const [showFloorModal, setShowFloorModal] = useAtom(isFloorModalAtom);
+
   const router = useRouter();
   const handleShowFloorModal = () => {
     setShowFloorModal(!showFloorModal);
@@ -23,11 +23,14 @@ export default function Layout() {
 
       <Stack.Screen
         name="home/index"
-        options={{ headerTitle: "客室状況", headerBackVisible: false ,
+        options={{
+          headerTitle: "客室状況",
+          headerBackVisible: false,
           headerRight: () => (
-            <Text style={styles.text} onPress={handleShowFloorModal}>フロアを変更</Text>
+            <Text style={styles.text} onPress={handleShowFloorModal}>
+              フロアを変更
+            </Text>
           ),
-
         }}
       />
       <Stack.Screen
@@ -36,7 +39,12 @@ export default function Layout() {
           headerTitle: "タスク",
           headerBackVisible: false,
           headerRight: () => (
-            <Text style={styles.text} onPress={() => router.push("/task/completed")}>完了したタスク</Text>
+            <Text
+              style={styles.text}
+              onPress={() => router.push("/task/completed")}
+            >
+              完了したタスク
+            </Text>
           ),
         }}
       />
@@ -44,19 +52,14 @@ export default function Layout() {
         name="task/completed"
         options={{ headerTitle: "完了したタスク", animation: "default" }}
       />
-      <Stack.Screen
-        name="chat/index"
-        options={{ headerTitle: "チャット",          
-           headerBackVisible: false,
-        }}
-      />
+      <Stack.Screen name="chat/index" options={{ headerTitle: "チャット" }} />
     </Stack>
   );
 }
 
 const styles = StyleSheet.create({
-text: {
-  fontSize:15,
-  fontWeight:"500"
-}
-})
+  text: {
+    fontSize: 15,
+    fontWeight: "500",
+  },
+});

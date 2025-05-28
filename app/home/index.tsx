@@ -22,6 +22,7 @@ export default function HomeScreen() {
         contentContainerStyle={{ paddingVertical: 10 }}
       >
         {RoomsData.map((room) => (
+          
           <Room
             key={room.id}
             id={room.id}
@@ -32,6 +33,7 @@ export default function HomeScreen() {
         ))}
       </ScrollView>
       <View style={styles.menuBarContainer}>
+        
         <MenuBar />
       </View>
 
