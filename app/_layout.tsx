@@ -5,7 +5,7 @@ import { isFloorModalAtom } from "../src/store";
 
 export default function Layout() {
   const [showFloorModal, setShowFloorModal] = useAtom(isFloorModalAtom);
-
+const env = process.env.EXPO_PUBLIC_APP_VERSION
   const router = useRouter();
   const handleShowFloorModal = () => {
     setShowFloorModal(!showFloorModal);
@@ -28,7 +28,7 @@ export default function Layout() {
           headerBackVisible: false,
           headerRight: () => (
             <Text style={styles.text} onPress={handleShowFloorModal}>
-              フロアを変更
+              フロアを変更 {env}
             </Text>
           ),
         }}
