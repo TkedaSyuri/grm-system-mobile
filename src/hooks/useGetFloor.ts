@@ -11,7 +11,7 @@ async function fetcher(key: string) {
 export const useGetFloor = () => {
   const setFloor = useSetAtom(floorsAtom)
   const floorNumber = useAtomValue(floorNuberAtom)
-
+console.log(process.env.EXPO_PUBLIC_APP_VERSION)
   const { data, error, isLoading } = useSWR(
     `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/${floorNumber}`,
     fetcher,
