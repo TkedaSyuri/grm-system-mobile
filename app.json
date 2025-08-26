@@ -36,6 +36,12 @@
         "projectId": "08fc4b7e-ad95-421f-87fa-4dd0826e75b3"
       }
     },
-    "owner": "syuri2000"
+    "owner": "syuri2000",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/08fc4b7e-ad95-421f-87fa-4dd0826e75b3"
+    }
   }
 }
