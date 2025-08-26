@@ -1,28 +1,55 @@
 import useSWR from "swr";
 import { floorNuberAtom, floorsAtom } from "../store";
 import { useAtomValue, useSetAtom } from "jotai";
-import { useEffect } from "react";
-
+import { useEffect, useRef } from "react";
+import { io, Socket } from "socket.io-client";
 
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
 
 export const useGetFloor = () => {
-  const setFloor = useSetAtom(floorsAtom)
-  const floorNumber = useAtomValue(floorNuberAtom)
-  const { data, error, isLoading } = useSWR(
+  const setFloor = useSetAtom(floorsAtom);
+  const floorNumber = useAtomValue(floorNuberAtom);
+  const socketRef = useRef<Socket | null>(null);
+
+  const { data, error, mutate, isLoading } = useSWR(
     `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/${floorNumber}`,
     fetcher,
-    { refreshInterval: 3000 }
+    { revalidateOnFocus: false }
   );
 
   useEffect(() => {
+    
     if (data) {
       setFloor(data);
     }
   }, [data, setFloor]);
-  
 
-  return {error, isLoading };
+  // Socket.IO接続開始
+  useEffect(() => {
+    socketRef.current = io(process.env.EXPO_PUBLIC_APP_VERSION || "");
+
+    socketRef.current.on("connect", () => {
+      console.log("Socket connected:", socketRef.current?.id);
+    });
+
+    // サーバーからの更新通知受信
+    socketRef.current.on("updatedRoomState", (msg) => {
+      console.log("received:", msg);
+
+      // データを再取得してReduxを更新
+      mutate();
+    });
+
+    socketRef.current.on("disconnect", () => {
+      console.log("Socket disconnected");
+    });
+
+    return () => {
+      socketRef.current?.disconnect();
+    };
+  }, [mutate]);
+
+  return { error, isLoading };
 };
