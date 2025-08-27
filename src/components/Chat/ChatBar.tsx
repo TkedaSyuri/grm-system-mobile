@@ -2,16 +2,21 @@ import { Button } from "@rneui/base";
 import { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Icon } from "@rneui/base";
+
+
 const ChatBar = () => {
   const [message, setMessage] = useState("");
 
   const handleSubmitMessage = async (newMessage: string) => {
+    console.log(`メッセージ${message}`)
     try {
-      await fetch(`${process.env.EXPO_PUBLIC_APP_VERSION}/api/chat/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ newMessage: `${newMessage}` }),
-      });
+      if (message !== "") {
+        await fetch(`${process.env.EXPO_PUBLIC_APP_VERSION}/api/chat/create`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ newMessage: `${newMessage}` }),
+        });
+      }
       setMessage("");
     } catch (e) {
       console.log(e);
@@ -44,11 +49,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#ccc",
     backgroundColor: "yellowgreen",
-
   },
   textInput: {
     marginRight: 10,
-    margin:9,
+    margin: 9,
     flex: 1,
     height: 40,
     borderColor: "#ddd",
