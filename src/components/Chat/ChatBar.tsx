@@ -8,7 +8,6 @@ const ChatBar = () => {
   const [message, setMessage] = useState("");
 
   const handleSubmitMessage = async (newMessage: string) => {
-    console.log(`メッセージ${message}`)
     try {
       if (message !== "") {
         await fetch(`${process.env.EXPO_PUBLIC_APP_VERSION}/api/chat/create`, {
