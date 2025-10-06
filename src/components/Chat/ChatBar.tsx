@@ -3,17 +3,18 @@ import { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Icon } from "@rneui/base";
 
-
 const ChatBar = () => {
   const [message, setMessage] = useState("");
+    const sender = "housekeeper";
 
-  const handleSubmitMessage = async (newMessage: string) => {
+  const handleSubmitMessage = async (newMessage: string, sender: string) => {
+    
     try {
       if (message !== "") {
         await fetch(`${process.env.EXPO_PUBLIC_APP_VERSION}/api/chat/create`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ newMessage: `${newMessage}` }),
+          body: JSON.stringify({ newMessage: `${newMessage}`,sender: sender }),
         });
       }
       setMessage("");
@@ -33,7 +34,7 @@ const ChatBar = () => {
         name="send"
         color={"blue"}
         size={30}
-        onPress={() => handleSubmitMessage(message)}
+        onPress={() => handleSubmitMessage(message, sender)}
       />
     </View>
   );

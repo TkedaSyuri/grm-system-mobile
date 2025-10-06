@@ -17,6 +17,7 @@ const ChatList = () => {
           key={chat.id}
           id={chat.id}
           message={chat.message}
+          sender={chat.sender}
           createdAt={chat.createdAt}
         />
       ))}
