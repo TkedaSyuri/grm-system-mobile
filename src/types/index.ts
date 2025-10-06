@@ -21,5 +21,7 @@ export interface Tasks {
 export interface Chats {
   id: number;
   message: string;
+  sender:string
   createdAt: string;
+  
 }
