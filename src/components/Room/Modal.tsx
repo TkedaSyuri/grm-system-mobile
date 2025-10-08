@@ -14,6 +14,7 @@ function ChangeStateModal() {
   const [isModal, setIsModal] = useAtom(isModalAtom);
   const selectedRoomNumber = useAtomValue(selectedRoomNumbersAtom);
   const selectedRoomId = useAtomValue(selectedRoomIdAtom);
+  
   return (
     <Modal animationType="slide" transparent={true} visible={isModal}>
       <TouchableWithoutFeedback onPress={() => setIsModal(false)}>
