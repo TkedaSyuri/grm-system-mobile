@@ -1,34 +1,38 @@
 import useSWR from "swr";
-import {  useSetAtom } from "jotai";
-import { useEffect , useRef} from "react";
+import { useSetAtom } from "jotai";
+import { useEffect, useRef } from "react";
 import { tasksAtom } from "../store";
 import { io, Socket } from "socket.io-client";
-
 
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
 
+const API_BASEURL = process.env.EXPO_PUBLIC_API_BASEURL;
+
 export const useGetTask = () => {
-  const setTask = useSetAtom(tasksAtom)
+  const setTask = useSetAtom(tasksAtom);
   const socketRef = useRef<Socket | null>(null);
 
-
-  const { data, error,mutate, isLoading } = useSWR(
-    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/task`,
+  const { data, mutate, isLoading } = useSWR(
+    `${API_BASEURL}/api/tasks`,
     fetcher,
-    { revalidateOnFocus: false }
+    {
+      revalidateOnFocus: false,
+      refreshInterval: 3000, // ← chatと同じくポーリングを追加
+    }
   );
 
+  // SWRのデータをAtomへ反映
   useEffect(() => {
     if (data) {
       setTask(data);
     }
-  }, [data, setTask]);
+  }, [setTask, data]);
 
-    // Socket.IO接続開始
+  // Socket.IO接続開始
   useEffect(() => {
-    socketRef.current = io(process.env.EXPO_PUBLIC_APP_VERSION || "");
+    socketRef.current = io(API_BASEURL || "");
 
     socketRef.current.on("connect", () => {
       console.log("Socket connected:", socketRef.current?.id);
@@ -36,10 +40,8 @@ export const useGetTask = () => {
 
     // サーバーからの更新通知受信
     socketRef.current.on("updatedTask", (msg) => {
-      console.log("received:", msg);
-
-      // データを再取得してReduxを更新
-      mutate();
+      console.log("updatedTask received:", msg);
+      mutate(); // ← 通知を受け取ったら再取得
     });
 
     socketRef.current.on("disconnect", () => {
@@ -51,7 +53,9 @@ export const useGetTask = () => {
     };
   }, [mutate]);
 
-
-
-  return {error, isLoading };
+  return {
+    data,
+    isLoading,
+  };
 };
+
