@@ -5,16 +5,15 @@ import { Icon } from "@rneui/base";
 
 const ChatBar = () => {
   const [message, setMessage] = useState("");
-    const sender = "housekeeper";
+  const sender = "housekeeper";
 
   const handleSubmitMessage = async (newMessage: string, sender: string) => {
-    
     try {
       if (message !== "") {
-        await fetch(`${process.env.EXPO_PUBLIC_APP_VERSION}/api/chat/create`, {
+        await fetch(`${process.env.EXPO_PUBLIC_API_BASEURL}/api/chats`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ newMessage: `${newMessage}`,sender: sender }),
+          body: JSON.stringify({ newMessage: `${newMessage}`, sender: sender }),
         });
       }
       setMessage("");

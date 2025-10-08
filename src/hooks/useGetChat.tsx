@@ -8,23 +8,17 @@ import Constants from "expo-constants";
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
-const API_BASEURL =
-  // OTAや本番ビルド時に使う
-  Constants.expoConfig?.extra?.API_BASEURL ??
-  //ローカル開発時に使う
-  process.env.EXPO_PUBLIC_API_BASEURL ??
-  // ③ デフォルト
-  "http://localhost:10000";
+// const API_BASEURL = process.env.EXPO_PUBLIC_API_BASEURL;
 
 export const useGetChats = () => {
   const setChat = useSetAtom(chatsAtom);
   const socketRef = useRef<Socket | null>(null);
 
   const { data, mutate, isLoading } = useSWR(
-    `${API_BASEURL}/api/chats`,
+    `${process.env.EXPO_PUBLIC_API_BASEURL}/api/chats`,
     fetcher,
     {
-      refreshInterval: 3000,
+      revalidateOnFocus: false,
     }
   );
 
@@ -38,7 +32,7 @@ export const useGetChats = () => {
     socketRef.current = io(process.env.EXPO_PUBLIC_API_BASEURL || "");
 
     socketRef.current.on("connect", () => {
-      console.log("Socket connected:", socketRef.current?.id);
+      console.log("Socket connected d:", socketRef.current?.id);
     });
 
     // サーバーからの更新通知受信
@@ -56,7 +50,7 @@ export const useGetChats = () => {
     return () => {
       socketRef.current?.disconnect();
     };
-  }, [mutate]);
+  }, []);
 
   return {
     data,

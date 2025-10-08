@@ -28,7 +28,7 @@ const StateBtn: React.FC<StateBtnProps> = (props) => {
   const handleUpdateState = async (state: string, roomId: number) => {
     try {
       const response = await fetch(
-        `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/room-state/${roomId}`,
+        `${process.env.EXPO_PUBLIC_API_BASEURL}/api/rooms/${roomId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

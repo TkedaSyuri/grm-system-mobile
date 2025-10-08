@@ -11,10 +11,12 @@ interface CompletedTaskItemProps {
 
 const CompletedTaskItem: React.FC<CompletedTaskItemProps> = (props) => {
   const { id,task,isCompleted,setScrollEnabled} = props;
+
+  //完了タスクを未完了にする関数
   const handleIsCompletePress = async (id: number, isCompleted: boolean) => {
     try {
       const response = await fetch(
-        `${process.env.EXPO_PUBLIC_APP_VERSION}/api/task/complete-task/${id}`,
+        `${process.env.EXPO_PUBLIC_API_BASEURL}/api/tasks/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

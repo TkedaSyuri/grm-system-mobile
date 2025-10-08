@@ -6,14 +6,16 @@ interface InCompletedTaskItemProps {
   id: number;
   task: string;
   isCompleted: boolean;
-  setScrollEnabled: (enabled: boolean) => void;}
+  setScrollEnabled: (enabled: boolean) => void;
+}
 
 const InCompletedTaskItem: React.FC<InCompletedTaskItemProps> = (props) => {
-  const { id, task, isCompleted ,setScrollEnabled} = props;
+  const { id, task, isCompleted, setScrollEnabled } = props;
+  //タスクを完了にするタスク
   const handleIsCompletePress = async (id: number, isCompleted: boolean) => {
     try {
       const response = await fetch(
-        `${process.env.EXPO_PUBLIC_APP_VERSION}/api/task/complete-task/${id}`,
+        `${process.env.EXPO_PUBLIC_API_BASEURL}/api/tasks/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

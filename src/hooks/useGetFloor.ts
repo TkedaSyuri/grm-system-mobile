@@ -14,7 +14,7 @@ export const useGetFloor = () => {
   const socketRef = useRef<Socket | null>(null);
 
   const { data, error, mutate, isLoading } = useSWR(
-    `${process.env.EXPO_PUBLIC_APP_VERSION}/api/room/${floorNumber}`,
+    `${process.env.EXPO_PUBLIC_API_BASEURL}/api/rooms/${floorNumber}`,
     fetcher,
     { revalidateOnFocus: false }
   );
@@ -24,11 +24,11 @@ export const useGetFloor = () => {
     if (data) {
       setFloor(data);
     }
-  }, [data, setFloor]);
+  }, [data, setFloor,floorNumber]);
 
   // Socket.IO接続開始
   useEffect(() => {
-    socketRef.current = io(process.env.EXPO_PUBLIC_APP_VERSION || "");
+    socketRef.current = io(process.env.EXPO_PUBLIC_API_BASEURL || "");
 
     socketRef.current.on("connect", () => {
       console.log("Socket connected:", socketRef.current?.id);
@@ -49,7 +49,7 @@ export const useGetFloor = () => {
     return () => {
       socketRef.current?.disconnect();
     };
-  }, [mutate]);
+  }, [mutate,floorNumber]);
 
   return { error, isLoading };
 };
