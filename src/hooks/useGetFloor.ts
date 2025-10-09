@@ -3,10 +3,13 @@ import { floorNuberAtom, floorsAtom } from "../store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
+import Constants from "expo-constants";
 
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
+const API_BASEURL = Constants.expoConfig?.extra?.API_BASEURL ??
+process.env.EXPO_PUBLIC_API_BASEURL
 
 export const useGetFloor = () => {
   const setFloor = useSetAtom(floorsAtom);
@@ -14,7 +17,7 @@ export const useGetFloor = () => {
   const socketRef = useRef<Socket | null>(null);
 
   const { data, error, mutate, isLoading } = useSWR(
-    `${process.env.EXPO_PUBLIC_API_BASEURL}/api/rooms/${floorNumber}`,
+    `${API_BASEURL}/api/rooms/${floorNumber}`,
     fetcher,
     { revalidateOnFocus: false }
   );
@@ -28,7 +31,7 @@ export const useGetFloor = () => {
 
   // Socket.IO接続開始
   useEffect(() => {
-    socketRef.current = io(process.env.EXPO_PUBLIC_API_BASEURL || "");
+    socketRef.current = io(API_BASEURL || "");
 
     socketRef.current.on("connect", () => {
       console.log("Socket connected:", socketRef.current?.id);
