@@ -8,8 +8,7 @@ import Constants from "expo-constants";
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
-const API_BASEURL = Constants.expoConfig?.extra?.API_BASEURL ??
-process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL ="https://grm-moniter-mobile-api.onrender.com"
 
 export const useGetFloor = () => {
   const setFloor = useSetAtom(floorsAtom);
@@ -31,7 +30,9 @@ export const useGetFloor = () => {
 
   // Socket.IO接続開始
   useEffect(() => {
-    socketRef.current = io(API_BASEURL || "");
+socketRef.current = io(API_BASEURL, {
+  transports: ["websocket"], // websocket のみ
+});
 
     socketRef.current.on("connect", () => {
       console.log("Socket connected:", socketRef.current?.id);

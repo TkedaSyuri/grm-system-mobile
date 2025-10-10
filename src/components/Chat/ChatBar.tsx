@@ -3,6 +3,8 @@ import { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Icon } from "@rneui/base";
 
+const API_BASEURL ="https://grm-moniter-mobile-api.onrender.com"
+
 const ChatBar = () => {
   const [message, setMessage] = useState("");
   const sender = "housekeeper";
@@ -10,7 +12,7 @@ const ChatBar = () => {
   const handleSubmitMessage = async (newMessage: string, sender: string) => {
     try {
       if (message !== "") {
-        await fetch(`${process.env.EXPO_PUBLIC_API_BASEURL}/api/chats`, {
+        await fetch(`${API_BASEURL}/api/chats`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ newMessage: `${newMessage}`, sender: sender }),

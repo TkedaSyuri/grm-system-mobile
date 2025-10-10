@@ -7,6 +7,9 @@ interface StateBtnProps {
   state: string;
   roomId: number;
 }
+
+const API_BASEURL ="https://grm-moniter-mobile-api.onrender.com"
+
 //部屋の状態を変更するボタンコンポーネント
 const StateBtn: React.FC<StateBtnProps> = (props) => {
   const { stateName, state, roomId } = props;
@@ -28,7 +31,7 @@ const StateBtn: React.FC<StateBtnProps> = (props) => {
   const handleUpdateState = async (state: string, roomId: number) => {
     try {
       const response = await fetch(
-        `${process.env.EXPO_PUBLIC_API_BASEURL}/api/rooms/${roomId}`,
+        `${API_BASEURL}/api/rooms/${roomId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

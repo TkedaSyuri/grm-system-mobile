@@ -8,14 +8,14 @@ import Constants from "expo-constants";
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
-// const API_BASEURL = process.env.EXPO_PUBLIC_API_BASEURL;
+const API_BASEURL ="https://grm-moniter-mobile-api.onrender.com"
 
 export const useGetChats = () => {
   const setChat = useSetAtom(chatsAtom);
   const socketRef = useRef<Socket | null>(null);
 
   const { data, mutate, isLoading } = useSWR(
-    `${process.env.EXPO_PUBLIC_API_BASEURL}/api/chats`,
+    `${ API_BASEURL}/api/chats`,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -29,7 +29,9 @@ export const useGetChats = () => {
   }, [setChat, data]);
   // Socket.IO接続開始
   useEffect(() => {
-    socketRef.current = io(process.env.EXPO_PUBLIC_API_BASEURL || "");
+socketRef.current = io(API_BASEURL, {
+  transports: ["websocket"], // websocket のみ
+});
 
     socketRef.current.on("connect", () => {
       console.log("Socket connected d:", socketRef.current?.id);
