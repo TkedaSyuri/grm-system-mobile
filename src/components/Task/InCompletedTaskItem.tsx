@@ -1,5 +1,4 @@
 import { ListItem, Button } from "@rneui/themed";
-import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 interface InCompletedTaskItemProps {
