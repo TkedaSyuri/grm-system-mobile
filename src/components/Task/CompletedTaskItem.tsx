@@ -9,6 +9,9 @@ interface CompletedTaskItemProps {
   setScrollEnabled: (enabled: boolean) => void;
 }
 
+const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+
+
 const CompletedTaskItem: React.FC<CompletedTaskItemProps> = (props) => {
   const { id,task,isCompleted,setScrollEnabled} = props;
 
@@ -16,7 +19,7 @@ const CompletedTaskItem: React.FC<CompletedTaskItemProps> = (props) => {
   const handleIsCompletePress = async (id: number, isCompleted: boolean) => {
     try {
       const response = await fetch(
-        `${process.env.EXPO_PUBLIC_API_BASEURL}/api/tasks/${id}`,
+        `${API_BASEURL}/api/tasks/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

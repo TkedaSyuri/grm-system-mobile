@@ -8,7 +8,7 @@ import Constants from "expo-constants";
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
-const API_BASEURL ="https://grm-moniter-mobile-api.onrender.com"
+const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
 
 export const useGetChats = () => {
   const setChat = useSetAtom(chatsAtom);

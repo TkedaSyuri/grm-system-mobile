@@ -3,7 +3,7 @@ import { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Icon } from "@rneui/base";
 
-const API_BASEURL ="https://grm-moniter-mobile-api.onrender.com"
+const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
 
 const ChatBar = () => {
   const [message, setMessage] = useState("");

@@ -8,7 +8,7 @@ interface StateBtnProps {
   roomId: number;
 }
 
-const API_BASEURL ="https://grm-moniter-mobile-api.onrender.com"
+const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
 
 //部屋の状態を変更するボタンコンポーネント
 const StateBtn: React.FC<StateBtnProps> = (props) => {
