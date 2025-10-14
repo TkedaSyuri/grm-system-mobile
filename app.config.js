@@ -1,0 +1,48 @@
+import "dotenv/config";
+
+export default {
+  expo: {
+    name: "grm-system-mobile",
+    slug: "grm-system-mobile",
+    version: "1.0.0",
+    runtimeVersion: "1.0.0",
+    orientation: "portrait",
+    icon: "./assets/icon.png",
+    userInterfaceStyle: "light",
+    newArchEnabled: true,
+    splash: {
+      image: "./assets/splash-icon.png",
+      resizeMode: "contain",
+      backgroundColor: "#ffffff",
+    },
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: "com.syuri2000.grmsystemmobile",
+    },
+    android: {
+      adaptiveIcon: {
+        foregroundImage: "./assets/adaptive-icon.png",
+        backgroundColor: "#ffffff",
+      },
+      package: "com.syuri2000.grmsystemmobile",
+    },
+    web: {
+      favicon: "./assets/favicon.png",
+    },
+    plugins: ["expo-router"],
+    scheme: "grm-system-mobile",
+    extra: {
+      router: {
+        origin: false,
+      },
+      eas: {
+        projectId: "08fc4b7e-ad95-421f-87fa-4dd0826e75b3",
+      },
+      apiBaseUrl:process.env.EXPO_PUBLIC_API_BASEURL
+    },
+    owner: "syuri2000",
+    updates: {
+      url: "https://u.expo.dev/08fc4b7e-ad95-421f-87fa-4dd0826e75b3",
+    },
+  },
+};
