@@ -1,6 +1,7 @@
 import { useSetAtom } from "jotai";
 import { Text, TouchableOpacity } from "react-native";
 import { isModalAtom } from "../../store";
+import Constants from "expo-constants";
 
 interface StateBtnProps {
   stateName: string;
@@ -8,7 +9,7 @@ interface StateBtnProps {
   roomId: number;
 }
 
-const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL = Constants.expoConfig?.extra?.apiBaseUrl;
 
 //部屋の状態を変更するボタンコンポーネント
 const StateBtn: React.FC<StateBtnProps> = (props) => {

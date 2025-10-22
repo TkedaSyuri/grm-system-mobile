@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from "react-native";
+import {  FlatList, StyleSheet } from "react-native";
 import ChatListItem from "./ChatListItem";
 import { useAtomValue } from "jotai";
 import { chatsAtom } from "../../store";
@@ -6,22 +6,25 @@ import { useGetChats } from "../../hooks/useGetChat";
 
 const ChatList = () => {
   const ChatData = useAtomValue(chatsAtom);
-  useGetChats()
+  useGetChats();
   return (
-    <ScrollView
+    <FlatList
       style={styles.scrollArea}
       contentContainerStyle={{ paddingVertical: 30 }}
-    >
-      {ChatData.map((chat) => (
+      data={[...ChatData].reverse()}
+      inverted
+      keyExtractor={(chat) => chat.id.toString()}
+      renderItem={({ item }) => (
         <ChatListItem
-          key={chat.id}
-          id={chat.id}
-          message={chat.message}
-          sender={chat.sender}
-          createdAt={chat.createdAt}
+          key={item.id}
+          id={item.id}
+          message={item.message}
+          sender={item.sender}
+          floorNumber={item.floorNumber}
+          createdAt={item.createdAt}
         />
-      ))}
-    </ScrollView>
+      )}
+    />
   );
 };
 

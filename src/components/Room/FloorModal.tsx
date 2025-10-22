@@ -7,13 +7,13 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { StyleSheet } from "react-native";
-import { floorNuberAtom, isFloorModalAtom } from "../../store";
+import { floorNumberAtom, isFloorModalAtom } from "../../store";
 
 const RoomNumbers = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
 
 
 const FloorModal = () => {
-  const setFloorNumber = useSetAtom(floorNuberAtom);
+  const setFloorNumber = useSetAtom(floorNumberAtom);
   const [showFloorModal, setShowFloorModal] = useAtom(isFloorModalAtom);
 
   const handleFloor = (floorNumber: string) => {

@@ -5,16 +5,17 @@ interface ChatProps {
   id: number;
   message: string;
   sender: string;
+  floorNumber:string;
   createdAt: string;
 }
 
 const ChatListItem: React.FC<ChatProps> = (props) => {
-  const { id, message, sender, createdAt } = props;
+  const { id, message, sender,floorNumber, createdAt } = props;
   return (
     <View>
       <View>
         {sender === "housekeeper" ? (
-          <Text style={styles.senderHousekeeper}>ハウスキーパー</Text>
+          <Text style={styles.senderHousekeeper}>ハウスキーパー:{floorNumber}F</Text>
         ) : (
           <Text style={styles.senderFront}>フロントスタッフ</Text>
         )}

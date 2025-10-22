@@ -2,20 +2,36 @@ import { Button } from "@rneui/base";
 import { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Icon } from "@rneui/base";
+import Constants from "expo-constants";
+import { useAtomValue } from "jotai";
+import { floorNumberAtom } from "../../store";
 
-const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL =
+  Constants.expoConfig?.extra?.apiBaseUrl ??
+  process.env.EXPO_PUBLIC_API_BASEURL;
 
 const ChatBar = () => {
+  const floorNumber =useAtomValue(floorNumberAtom)
+
   const [message, setMessage] = useState("");
   const sender = "housekeeper";
 
-  const handleSubmitMessage = async (newMessage: string, sender: string) => {
+  const handleSubmitMessage = async (
+    newMessage: string,
+    sender: string,
+    floorNumber: string
+  ) => {
+
     try {
       if (message !== "") {
         await fetch(`${API_BASEURL}/api/chats`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ newMessage: `${newMessage}`, sender: sender }),
+          body: JSON.stringify({
+            newMessage: `${newMessage}`,
+            sender: sender,
+            floorNumber: floorNumber,
+          }),
         });
       }
       setMessage("");
@@ -35,7 +51,7 @@ const ChatBar = () => {
         name="send"
         color={"blue"}
         size={30}
-        onPress={() => handleSubmitMessage(message, sender)}
+        onPress={() => handleSubmitMessage(message, sender, floorNumber)}
       />
     </View>
   );
