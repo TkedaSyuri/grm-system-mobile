@@ -21,7 +21,8 @@ export interface Tasks {
 export interface Chats {
   id: number;
   message: string;
-  sender:string
+  sender:string;
+  floorNumber:string;
   createdAt: string;
   
 }
