@@ -1,5 +1,6 @@
 import { ListItem, Button } from "@rneui/themed";
 import { StyleSheet, View } from "react-native";
+import Constants from "expo-constants";
 
 interface InCompletedTaskItemProps {
   id: number;
@@ -8,7 +9,7 @@ interface InCompletedTaskItemProps {
   setScrollEnabled: (enabled: boolean) => void;
 }
 
-const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL = Constants.expoConfig?.extra?.apiBaseUrl;
 
 const InCompletedTaskItem: React.FC<InCompletedTaskItemProps> = (props) => {
   const { id, task, isCompleted, setScrollEnabled } = props;

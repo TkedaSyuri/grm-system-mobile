@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { floorNuberAtom, floorsAtom } from "../store";
+import { floorNumberAtom, floorsAtom } from "../store";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
@@ -8,11 +8,13 @@ import Constants from "expo-constants";
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
-const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL = Constants.expoConfig?.extra?.apiBaseUrl??
+process.env.EXPO_PUBLIC_API_BASEURL??
+"http://localhost:10000";
 
 export const useGetFloor = () => {
   const setFloor = useSetAtom(floorsAtom);
-  const floorNumber = useAtomValue(floorNuberAtom);
+  const floorNumber = useAtomValue(floorNumberAtom);
   const socketRef = useRef<Socket | null>(null);
 
   const { data, error, mutate, isLoading } = useSWR(

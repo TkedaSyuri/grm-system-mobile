@@ -3,12 +3,15 @@ import { useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
 import { tasksAtom } from "../store";
 import { io, Socket } from "socket.io-client";
+import Constants from "expo-constants";
 
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
 
-const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL = Constants.expoConfig?.extra?.apiBaseUrl??
+process.env.EXPO_PUBLIC_API_BASEURL??
+"http://localhost:10000";
 
 export const useGetTask = () => {
   const setTask = useSetAtom(tasksAtom);

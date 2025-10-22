@@ -8,9 +8,12 @@ import Constants from "expo-constants";
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json());
 }
-const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL = Constants.expoConfig?.extra?.apiBaseUrl??
+process.env.EXPO_PUBLIC_API_BASEURL??
+"http://localhost:10000";
 
 export const useGetChats = () => {
+  console.log(API_BASEURL)
   const setChat = useSetAtom(chatsAtom);
   const socketRef = useRef<Socket | null>(null);
 

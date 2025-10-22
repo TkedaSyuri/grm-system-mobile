@@ -1,5 +1,6 @@
 import { Button, ListItem } from "@rneui/base";
 import { View,StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 
 interface CompletedTaskItemProps {
@@ -9,7 +10,7 @@ interface CompletedTaskItemProps {
   setScrollEnabled: (enabled: boolean) => void;
 }
 
-const API_BASEURL =process.env.EXPO_PUBLIC_API_BASEURL
+const API_BASEURL = Constants.expoConfig?.extra?.apiBaseUrl;
 
 
 const CompletedTaskItem: React.FC<CompletedTaskItemProps> = (props) => {
